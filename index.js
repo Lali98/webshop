@@ -12,7 +12,14 @@ app.get('/products', (req, res) => {
 
 // Read by id
 app.get('/products/:egyediAzonosito', (req, res) => {
+    const id = req.params.egyediAzonosito;
 
+    fs.readFile('./data/products.json', (err, data) => {
+        const products = JSON.parse(data);
+        const productsById = products.find(product => product.id === id);
+        console.log(productsById);
+    });
+    res.send('send');
 });
 
 // Create
